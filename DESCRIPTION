@@ -16,4 +16,4 @@ Suggests:
     dplyr
 URL: http://github.com/triangle-r/rduflights17
 BugReports: https://github.com/triangle-r/rduflights17/issues
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 6.0.1
