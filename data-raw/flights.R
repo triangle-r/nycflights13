@@ -1,12 +1,12 @@
 library(dplyr)
 library(readr)
 
-flight_url <- function(year = 2013, month) {
-  base_url <- "http://www.transtats.bts.gov/Download/"
+flight_url <- function(year = 2017, month) {
+  base_url <- "http://www.transtats.bts.gov/PREZIP/"
   sprintf(paste0(base_url, "On_Time_On_Time_Performance_%d_%d.zip"), year, month)
 }
 
-download_month <- function(year = 2013, month) {
+download_month <- function(year = 2017, month) {
   url <- flight_url(year, month)
 
   temp <- tempfile(fileext = ".zip")
@@ -19,15 +19,15 @@ download_month <- function(year = 2013, month) {
   unzip(temp, exdir = "data-raw/flights", junkpaths = TRUE, files = csv)
 
   src <- paste0("data-raw/flights/", csv)
-  dst <- paste0("data-raw/flights/", "2013-", month, ".csv")
+  dst <- paste0("data-raw/flights/", "2017-", month, ".csv")
   file.rename(src, dst)
 }
 
 months <- 1:12
-needed <- paste0("2013-", months, ".csv")
+needed <- paste0("2017-", months, ".csv")
 missing <- months[!(needed %in% dir("data-raw/flights"))]
 
-lapply(missing, download_month, year = 2013)
+lapply(missing, download_month, year = 2017)
 
 get_nyc <- function(path) {
   col_types <- cols(
@@ -47,7 +47,7 @@ get_nyc <- function(path) {
       origin = Origin, dest = Dest,
       air_time = AirTime, distance = Distance
     ) %>%
-    filter(origin %in% c("JFK", "LGA", "EWR")) %>%
+    filter(origin %in% c("RDU")) %>%
     mutate(
       hour = sched_dep_time %/% 100,
       minute = sched_dep_time %% 100,
