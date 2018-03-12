@@ -2,7 +2,8 @@ Package: rduflights17
 Title: Flights that Departed RDU in 2017
 Version: 0.1.0
 Authors@R: c(
-    person("Ian", "Cook", , "ianmcook@gmail.com", c("aut", "cre"))
+    person("Ian", "Cook", , "ianmcook@gmail.com", c("aut", "cre")),
+    person("Gerald", "Belton", role = "ctb")
     )
 Description: Airline on-time data for all flights departing RDU in 2017.
     Also includes useful 'metadata' on airlines, airports, weather, and planes.
